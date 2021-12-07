@@ -4,6 +4,7 @@ import com.chequer.domain.board.*;
 import com.chequer.exception.BaseException;
 import com.chequer.exception.ErrorCode;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
@@ -13,7 +14,7 @@ import javax.transaction.Transactional;
 import java.util.List;
 import java.util.stream.Collectors;
 
-// TODO : 로그 연동 필요
+@Slf4j
 @RequiredArgsConstructor
 @Service
 public class BoardServiceImpl implements BoardService {
@@ -28,18 +29,28 @@ public class BoardServiceImpl implements BoardService {
 
     @Override
     @Transactional
-    public Long update(Long id, BoardUpdateRequestDto requestDto) {
+    public Long update(Long id, BoardUpdateRequestDto requestDto, String username) {
         Board board = boardRepository.findById(id)
                 .orElseThrow(() -> new BaseException(ErrorCode.BOARD_NOT_FOUND));
+
+        if (!board.getAuthor().equals(username)) {
+            throw new BaseException(ErrorCode.USER_FORBIDDEN);
+        }
+
         board.update(requestDto.getTitle(), requestDto.getContent());
         return id;
     }
 
     @Override
     @Transactional
-    public Long delete(Long id) {
+    public Long delete(Long id, String username) {
         Board board = boardRepository.findById(id)
                 .orElseThrow(() -> new BaseException(ErrorCode.BOARD_NOT_FOUND));
+
+        if (!board.getAuthor().equals(username)) {
+            throw new BaseException(ErrorCode.USER_FORBIDDEN);
+        }
+
         board.delete(id);
         return id;
     }
@@ -57,12 +68,15 @@ public class BoardServiceImpl implements BoardService {
     }
 
     @Override
-    public BoardResponseDto view(Long id) {
+    @Transactional
+    public BoardResponseDto view(Long id, String username) {
         Board board = boardRepository.findById(id)
                 .orElseThrow(() -> new BaseException(ErrorCode.BOARD_NOT_FOUND));
 
-        // TODO : 본인글이 아닌지 검증 후
-        board.increaseHits();
+        // 본인 게시글이 아닐 경우에만
+        if (!board.getAuthor().equals(username)) {
+            board.increaseHits();
+        }
 
         return new BoardResponseDto(board);
     }

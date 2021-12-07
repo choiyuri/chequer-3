@@ -11,6 +11,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
+
 @RequiredArgsConstructor
 @RestController
 @Api(tags = "게시글 API")
@@ -27,14 +29,17 @@ public class BoardApiController {
 
     @ApiOperation("게시글 수정")
     @PutMapping("/board/{id}")
-    public Long update(@PathVariable Long id, @RequestBody BoardUpdateRequestDto requestDto) {
-        return boardService.update(id, requestDto);
+    public Long update(@PathVariable Long id,
+                       @RequestBody BoardUpdateRequestDto requestDto,
+                       Principal principal) {
+        return boardService.update(id, requestDto, principal.getName());
     }
 
     @ApiOperation("게시글 삭제")
     @DeleteMapping("/board/{id}")
-    public Long delete(@PathVariable Long id) {
-        return boardService.delete(id);
+    public Long delete(@PathVariable Long id,
+                       Principal principal) {
+        return boardService.delete(id, principal.getName());
     }
 
     @ApiOperation("게시글 목록")
@@ -47,8 +52,10 @@ public class BoardApiController {
 
     @ApiOperation("게시글 본문 보기")
     @GetMapping("/board/{id}")
-    public BoardResponseDto view(@PathVariable Long id) {
-        return boardService.view(id);
+    public BoardResponseDto view(@PathVariable Long id,
+                                 Principal principal) {
+
+        return boardService.view(id, principal.getName());
     }
 
 }
