@@ -8,9 +8,9 @@ import org.springframework.data.domain.Pageable;
 
 public interface BoardService {
 
-    Long save(BoardSaveRequestDto requestDto);
+    BoardResponseDto save(BoardSaveRequestDto requestDto);
 
-    Long update(Long id, BoardUpdateRequestDto requestDto, String username);
+    BoardResponseDto update(Long id, BoardUpdateRequestDto requestDto, String username);
 
     Long delete(Long id, String username);
 

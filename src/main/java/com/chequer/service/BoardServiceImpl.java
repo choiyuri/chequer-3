@@ -23,13 +23,14 @@ public class BoardServiceImpl implements BoardService {
 
     @Override
     @Transactional
-    public Long save(BoardSaveRequestDto requestDto) {
-        return boardRepository.save(requestDto.toEntity()).getId();
+    public BoardResponseDto save(BoardSaveRequestDto requestDto) {
+        Board board = boardRepository.save(requestDto.toEntity());
+        return new BoardResponseDto(board);
     }
 
     @Override
     @Transactional
-    public Long update(Long id, BoardUpdateRequestDto requestDto, String username) {
+    public BoardResponseDto update(Long id, BoardUpdateRequestDto requestDto, String username) {
         Board board = boardRepository.findById(id)
                 .orElseThrow(() -> new BaseException(ErrorCode.BOARD_NOT_FOUND));
 
@@ -38,7 +39,7 @@ public class BoardServiceImpl implements BoardService {
         }
 
         board.update(requestDto.getTitle(), requestDto.getContent());
-        return id;
+        return new BoardResponseDto(board);
     }
 
     @Override
