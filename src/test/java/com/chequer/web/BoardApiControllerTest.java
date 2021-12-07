@@ -37,7 +37,6 @@ public class BoardApiControllerTest {
 
     @After
     public void tearDown() throws Exception {
-        // TODO : 메서드명 변경
         boardRepository.deleteAll();
     }
 
@@ -54,7 +53,6 @@ public class BoardApiControllerTest {
                 .author(author)
                 .build();
 
-        // TODO : url 전역변수로 선언
         String url = "http://localhost:" + port + "/api/v1/board";
 
         // when

@@ -15,8 +15,6 @@ public class ControllerExceptionHandler {
     @ExceptionHandler(BaseException.class)
     protected ResponseEntity<ErrorResponse> baseExceptionHandle(BaseException e, WebRequest webRequest) {
 
-        // TODO : logback-local.xml 설정 확인 필요.
-
         log.error("Base Exception : {}", e.getErrorCode().getDetail());
 
         ErrorResponse errorResponse = ErrorResponse.builder()
