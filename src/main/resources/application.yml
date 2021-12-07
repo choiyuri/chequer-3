@@ -29,6 +29,5 @@ logging:
 
 jwt:
   header: Authorization
-  #HS512 알고리즘을 사용할 것이기 때문에 512bit, 즉 64byte 이상의 secret key를 사용해야 한다.
-  secret: c2lsdmVybmluZS10ZWNoLXNwcmluZy1ib290LWp3dC10dXRvcmlhbC1zZWNyZXQtc2lsdmVybmluZS10ZWNoLXNwcmluZy1ib290LWp3dC10dXRvcmlhbC1zZWNyZXQK
+  secret: dd2901cdc1e1ddec8cd3eb0b55935ea07747371191e52e1e46838b82919a706427ee165e6519aacdb8b943cab27d9487a7a15893f944ba230fec0c3e3d0eba2f
   token-validity-in-seconds: 86400
