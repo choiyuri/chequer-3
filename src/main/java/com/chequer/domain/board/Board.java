@@ -55,7 +55,7 @@ public class Board extends BaseTimeEntity {
     /**
      * 삭제 여부
      */
-    private Boolean deleteYn;
+    private Boolean deleteYn = Boolean.FALSE;
 
     public void update(String title, String content) {
         this.title = title;

@@ -32,6 +32,7 @@ public class BoardSaveRequestDto {
                 .title(title)
                 .content(content)
                 .author(author)
+                .deleteYn(Boolean.FALSE)
                 .build();
     }
 }
