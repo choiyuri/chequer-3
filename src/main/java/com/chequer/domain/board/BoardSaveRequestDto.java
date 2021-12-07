@@ -12,10 +12,9 @@ import lombok.NoArgsConstructor;
 public class BoardSaveRequestDto {
 
     @Builder
-    public BoardSaveRequestDto(String title, String content, String author) {
+    public BoardSaveRequestDto(String title, String content) {
         this.title = title;
         this.content = content;
-        this.author = author;
     }
 
     @ApiModelProperty(value = "제목")
@@ -24,14 +23,10 @@ public class BoardSaveRequestDto {
     @ApiModelProperty(value = "내용")
     private String content;
 
-    @ApiModelProperty(value = "작성자")
-    private String author;
-
     public Board toEntity() {
         return Board.builder()
                 .title(title)
                 .content(content)
-                .author(author)
                 .deleteYn(Boolean.FALSE)
                 .build();
     }

@@ -5,6 +5,7 @@ import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.CreatedBy;
 
 import javax.persistence.*;
 
@@ -44,7 +45,8 @@ public class Board extends BaseTimeEntity {
     /**
      * 작성자
      */
-    @Column(nullable = false)
+    @CreatedBy
+    @Column(updatable = false)
     private String author;
 
     /**

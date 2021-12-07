@@ -46,11 +46,9 @@ public class BoardApiControllerTest {
         // given
         String title = "title";
         String content = "content";
-        String author = "author";
         BoardSaveRequestDto requestDto = BoardSaveRequestDto.builder()
                 .title(title)
                 .content(content)
-                .author(author)
                 .build();
 
         String url = "http://localhost:" + port + "/api/v1/board";
@@ -65,7 +63,6 @@ public class BoardApiControllerTest {
         List<Board> boardList = boardRepository.findAll();
         assertThat(boardList.get(0).getTitle()).isEqualTo(title);
         assertThat(boardList.get(0).getContent()).isEqualTo(content);
-        assertThat(boardList.get(0).getAuthor()).isEqualTo(author);
     }
 
     @Test
@@ -75,7 +72,6 @@ public class BoardApiControllerTest {
         Board board = boardRepository.save(Board.builder()
                 .title("title")
                 .content("content")
-                .author("author")
                 .build());
 
         Long id = board.getId();
