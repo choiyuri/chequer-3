@@ -1,7 +1,7 @@
 package com.chequer.service;
 
-import com.chequer.domain.user.Member;
-import com.chequer.domain.user.MemberRepository;
+import com.chequer.domain.member.Member;
+import com.chequer.domain.member.MemberRepository;
 import com.chequer.exception.BaseException;
 import com.chequer.exception.ErrorCode;
 import lombok.RequiredArgsConstructor;

@@ -1,15 +1,13 @@
 package com.chequer.web.controller;
 
-import com.chequer.domain.user.LoginDto;
-import com.chequer.domain.user.TokenDto;
+import com.chequer.domain.member.LoginDto;
+import com.chequer.domain.member.TokenDto;
 import com.chequer.jwt.JwtFilter;
 import com.chequer.jwt.TokenProvider;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.core.Authentication;
@@ -32,7 +30,7 @@ public class AuthApiController {
 
     @ApiOperation("사용자 인증")
     @PostMapping("/auth")
-    public ResponseEntity<TokenDto> authorize(@Valid @RequestBody LoginDto loginDto) {
+    public Object authorize(@Valid @RequestBody LoginDto loginDto) {
 
         UsernamePasswordAuthenticationToken authenticationToken =
                 new UsernamePasswordAuthenticationToken(loginDto.getEmail(), loginDto.getPassword());
@@ -45,6 +43,6 @@ public class AuthApiController {
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.add(JwtFilter.AUTHORIZATION_HEADER, "Bearer " + jwt);
 
-        return new ResponseEntity<>(new TokenDto(jwt), httpHeaders, HttpStatus.OK);
+        return new TokenDto(jwt);
     }
 }

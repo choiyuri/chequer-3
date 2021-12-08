@@ -44,7 +44,7 @@ public class BoardServiceImpl implements BoardService {
 
     @Override
     @Transactional
-    public Long delete(Long id, String username) {
+    public void delete(Long id, String username) {
         Board board = boardRepository.findById(id)
                 .orElseThrow(() -> new BaseException(ErrorCode.E0001));
 
@@ -53,7 +53,6 @@ public class BoardServiceImpl implements BoardService {
         }
 
         board.delete(id);
-        return id;
     }
 
     @Override

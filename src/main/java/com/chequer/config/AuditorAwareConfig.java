@@ -1,6 +1,6 @@
 package com.chequer.config;
 
-import com.chequer.domain.user.Role;
+import com.chequer.domain.member.Role;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.domain.AuditorAware;
 import org.springframework.security.core.GrantedAuthority;

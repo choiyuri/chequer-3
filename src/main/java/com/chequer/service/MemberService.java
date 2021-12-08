@@ -1,11 +1,9 @@
 package com.chequer.service;
 
-import com.chequer.domain.user.MemberResponseDto;
-import com.chequer.domain.user.MemberSaveRequestDto;
+import com.chequer.domain.member.MemberResponseDto;
+import com.chequer.domain.member.MemberSaveRequestDto;
 
 public interface MemberService {
-
-    MemberResponseDto findByEmail(String email);
 
     MemberResponseDto save(MemberSaveRequestDto requestDto);
 }

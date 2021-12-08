@@ -1,4 +1,4 @@
-package com.chequer.domain.user;
+package com.chequer.domain.member;
 
 import com.chequer.domain.common.BaseTimeEntity;
 import lombok.AccessLevel;

@@ -12,7 +12,7 @@ public interface BoardService {
 
     BoardResponseDto update(Long id, BoardUpdateRequestDto requestDto, String username);
 
-    Long delete(Long id, String username);
+    void delete(Long id, String username);
 
     Page<BoardResponseDto> list(Pageable pageable);
 
