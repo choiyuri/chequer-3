@@ -3,6 +3,7 @@ package com.chequer.service;
 import com.chequer.domain.board.BoardResponseDto;
 import com.chequer.domain.board.BoardSaveRequestDto;
 import com.chequer.domain.board.BoardUpdateRequestDto;
+import com.chequer.web.PageResponse;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -14,7 +15,7 @@ public interface BoardService {
 
     void delete(Long id, Long userId);
 
-    Page<BoardResponseDto> list(Pageable pageable);
+    PageResponse<BoardResponseDto> list(Pageable pageable);
 
     BoardResponseDto view(Long id, Long userId);
 }

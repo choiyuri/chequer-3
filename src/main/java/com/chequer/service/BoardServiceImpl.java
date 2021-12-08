@@ -3,16 +3,14 @@ package com.chequer.service;
 import com.chequer.domain.board.*;
 import com.chequer.exception.BaseException;
 import com.chequer.exception.ErrorCode;
+import com.chequer.web.PageResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.List;
-import java.util.stream.Collectors;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -56,15 +54,12 @@ public class BoardServiceImpl implements BoardService {
     }
 
     @Override
-    public Page<BoardResponseDto> list(Pageable pageable) {
+    public PageResponse<BoardResponseDto> list(Pageable pageable) {
 
         Page<Board> boardPage = boardRepository.findByDeleteYn(Boolean.FALSE, pageable);
 
-        List<BoardResponseDto> responseDtoList = boardPage.stream()
-                .map(BoardResponseDto::new)
-                .collect(Collectors.toList());
-
-        return new PageImpl<>(responseDtoList, pageable, boardPage.getTotalElements());
+        return new PageResponse<BoardResponseDto>()
+                .from(boardPage.map(BoardResponseDto::new));
     }
 
     @Override
