@@ -57,12 +57,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/api/v1/auth").permitAll()
                 .antMatchers("/api/v1/signup").permitAll()
 
-                // Swagger, H2
+                // Swagger, H2, Error
                 .antMatchers("/v2/api-docs",
                         "/swagger-resources/**",
                         "/swagger-ui.html**",
                         "/webjars/**",
-                        "/h2-console/**").permitAll()
+                        "/h2-console/**",
+                        "/error").permitAll()
 
                 .anyRequest().authenticated()
 

@@ -11,7 +11,6 @@ import javax.persistence.*;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
 @Entity
-@Table(uniqueConstraints = @UniqueConstraint(columnNames = "email"))
 public class Member extends BaseTimeEntity {
 
     @Builder
