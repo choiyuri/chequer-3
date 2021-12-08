@@ -24,7 +24,7 @@ public class UserServiceImpl implements UserService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         return memberRepository.findByEmail(username)
                 .map(member -> createUser(username, member))
-                .orElseThrow(() -> new BaseException(ErrorCode.E0002));
+                .orElseThrow(() -> new BaseException(ErrorCode.E1002));
     }
 
     private org.springframework.security.core.userdetails.User createUser(String username, Member member) {
