@@ -1,7 +1,7 @@
 package com.chequer.web.controller;
 
-import com.chequer.domain.member.LoginDto;
-import com.chequer.domain.member.TokenDto;
+import com.chequer.domain.auth.LoginDto;
+import com.chequer.domain.auth.TokenDto;
 import com.chequer.jwt.JwtFilter;
 import com.chequer.jwt.TokenProvider;
 import io.swagger.annotations.Api;

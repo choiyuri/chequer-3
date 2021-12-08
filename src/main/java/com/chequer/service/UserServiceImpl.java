@@ -1,5 +1,6 @@
 package com.chequer.service;
 
+import com.chequer.domain.auth.User;
 import com.chequer.domain.member.Member;
 import com.chequer.domain.member.MemberRepository;
 import com.chequer.exception.BaseException;
@@ -27,12 +28,14 @@ public class UserServiceImpl implements UserService {
                 .orElseThrow(() -> new BaseException(ErrorCode.E1002));
     }
 
-    private org.springframework.security.core.userdetails.User createUser(String username, Member member) {
+    private User createUser(String username, Member member) {
         if (!member.getActivated()) {
             throw new RuntimeException(username + " -> 활성화되어 있지 않습니다.");
         }
-        return new org.springframework.security.core.userdetails.User(member.getEmail(),
-                member.getPassword(), Collections.singleton(new SimpleGrantedAuthority(member.getRole().getKey())));
+        return new User(member.getId(),
+                member.getEmail(),
+                member.getPassword(),
+                Collections.singleton(new SimpleGrantedAuthority(member.getRole().getKey())));
     }
 
 }

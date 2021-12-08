@@ -1,4 +1,4 @@
-package com.chequer.domain.member;
+package com.chequer.domain.auth;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;

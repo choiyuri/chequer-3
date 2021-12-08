@@ -1,4 +1,4 @@
-package com.chequer.domain.member;
+package com.chequer.domain.auth;
 
 import lombok.*;
 
