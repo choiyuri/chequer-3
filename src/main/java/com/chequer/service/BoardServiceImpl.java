@@ -32,10 +32,10 @@ public class BoardServiceImpl implements BoardService {
     @Transactional
     public BoardResponseDto update(Long id, BoardUpdateRequestDto requestDto, String username) {
         Board board = boardRepository.findById(id)
-                .orElseThrow(() -> new BaseException(ErrorCode.BOARD_NOT_FOUND));
+                .orElseThrow(() -> new BaseException(ErrorCode.E0001));
 
         if (!board.getAuthor().equals(username)) {
-            throw new BaseException(ErrorCode.USER_FORBIDDEN);
+            throw new BaseException(ErrorCode.E0003);
         }
 
         board.update(requestDto.getTitle(), requestDto.getContent());
@@ -46,10 +46,10 @@ public class BoardServiceImpl implements BoardService {
     @Transactional
     public Long delete(Long id, String username) {
         Board board = boardRepository.findById(id)
-                .orElseThrow(() -> new BaseException(ErrorCode.BOARD_NOT_FOUND));
+                .orElseThrow(() -> new BaseException(ErrorCode.E0001));
 
         if (!board.getAuthor().equals(username)) {
-            throw new BaseException(ErrorCode.USER_FORBIDDEN);
+            throw new BaseException(ErrorCode.E0003);
         }
 
         board.delete(id);
@@ -72,7 +72,7 @@ public class BoardServiceImpl implements BoardService {
     @Transactional
     public BoardResponseDto view(Long id, String username) {
         Board board = boardRepository.findById(id)
-                .orElseThrow(() -> new BaseException(ErrorCode.BOARD_NOT_FOUND));
+                .orElseThrow(() -> new BaseException(ErrorCode.E0001));
 
         // 본인 게시글이 아닐 경우에만
         if (!board.getAuthor().equals(username)) {

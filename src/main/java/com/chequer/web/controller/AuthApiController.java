@@ -1,4 +1,4 @@
-package com.chequer.web;
+package com.chequer.web.controller;
 
 import com.chequer.domain.user.LoginDto;
 import com.chequer.domain.user.TokenDto;

@@ -20,7 +20,7 @@ public class MemberServiceImpl implements MemberService {
     @Override
     public MemberResponseDto findByEmail(String email) {
         Member member = userRepository.findByEmail(email)
-                .orElseThrow(() -> new BaseException(ErrorCode.USER_NOT_FOUND));
+                .orElseThrow(() -> new BaseException(ErrorCode.E0002));
         return new MemberResponseDto(member);
     }
 

@@ -1,4 +1,4 @@
-package com.chequer.web;
+package com.chequer.web.controller;
 
 import com.chequer.domain.board.BoardResponseDto;
 import com.chequer.domain.board.BoardSaveRequestDto;
