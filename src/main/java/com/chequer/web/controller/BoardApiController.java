@@ -1,5 +1,6 @@
 package com.chequer.web.controller;
 
+import com.chequer.domain.auth.CustomUserDetail;
 import com.chequer.domain.board.BoardSaveRequestDto;
 import com.chequer.domain.board.BoardUpdateRequestDto;
 import com.chequer.service.BoardService;
@@ -7,9 +8,8 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
-
-import java.security.Principal;
 
 @RequiredArgsConstructor
 @RestController
@@ -29,15 +29,15 @@ public class BoardApiController {
     @PutMapping("/board/{id}")
     public Object update(@PathVariable Long id,
                          @RequestBody BoardUpdateRequestDto requestDto,
-                         Principal principal) {
-        return boardService.update(id, requestDto, principal.getName());
+                         @AuthenticationPrincipal CustomUserDetail principal) {
+        return boardService.update(id, requestDto, principal.getUserId());
     }
 
     @ApiOperation("게시글 삭제")
     @DeleteMapping("/board/{id}")
     public Object delete(@PathVariable Long id,
-                         Principal principal) {
-        boardService.delete(id, principal.getName());
+                         @AuthenticationPrincipal CustomUserDetail principal) {
+        boardService.delete(id, principal.getUserId());
         return null;
     }
 
@@ -52,9 +52,9 @@ public class BoardApiController {
     @ApiOperation("게시글 본문 보기")
     @GetMapping("/board/{id}")
     public Object view(@PathVariable Long id,
-                       Principal principal) {
+                       @AuthenticationPrincipal CustomUserDetail principal) {
 
-        return boardService.view(id, principal.getName());
+        return boardService.view(id, principal.getUserId());
     }
 
 }

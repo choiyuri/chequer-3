@@ -18,7 +18,7 @@ public class BoardResponseDto {
     private String content;
 
     @ApiModelProperty(value = "작성자")
-    private String author;
+    private Long author;
 
     @ApiModelProperty(value = "조회수")
     private Integer hits;

@@ -1,5 +1,6 @@
 package com.chequer.config;
 
+import com.chequer.domain.auth.CustomUserDetail;
 import com.chequer.domain.member.Role;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.domain.AuditorAware;
@@ -12,15 +13,15 @@ import java.util.Collection;
 import java.util.Optional;
 
 @Configuration
-public class AuditorAwareConfig implements AuditorAware<String> {
+public class AuditorAwareConfig implements AuditorAware<Long> {
     @Override
-    public Optional<String> getCurrentAuditor() {
+    public Optional<Long> getCurrentAuditor() {
         return Optional.ofNullable(SecurityContextHolder.getContext())
                 .map(SecurityContext::getAuthentication)
                 .map(authentication -> {
                     Collection<? extends GrantedAuthority> auth = authentication.getAuthorities();
                     boolean isUser = auth.contains(new SimpleGrantedAuthority(Role.USER.getKey()));
-                    if (isUser) return authentication.getName();
+                    if (isUser) return ((CustomUserDetail) authentication.getPrincipal()).getUserId();
                     return null;
                 });
     }

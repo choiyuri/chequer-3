@@ -18,7 +18,7 @@ import javax.persistence.*;
 public class Board extends BaseTimeEntity {
 
     @Builder
-    public Board(String title, String content, String author, int hits, Boolean deleteYn) {
+    public Board(String title, String content, Long author, int hits, Boolean deleteYn) {
         this.title = title;
         this.content = content;
         this.author = author;
@@ -47,7 +47,7 @@ public class Board extends BaseTimeEntity {
      */
     @CreatedBy
     @Column(updatable = false)
-    private String author;
+    private Long author;
 
     /**
      * 조회수

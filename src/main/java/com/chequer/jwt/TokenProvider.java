@@ -1,7 +1,7 @@
 package com.chequer.jwt;
 
 
-import com.chequer.domain.auth.User;
+import com.chequer.domain.auth.CustomUserDetail;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
@@ -54,7 +54,7 @@ public class TokenProvider implements InitializingBean {
 
         return Jwts.builder()
                 .setSubject(authentication.getName())
-                .setId(String.valueOf(((User) authentication.getPrincipal()).getUserId()))
+                .setId(String.valueOf(((CustomUserDetail) authentication.getPrincipal()).getUserId()))
                 .claim(AUTHORITIES_KEY, authorities)
                 .signWith(key, SignatureAlgorithm.HS512)
                 .setExpiration(validity)
@@ -74,7 +74,7 @@ public class TokenProvider implements InitializingBean {
                         .map(SimpleGrantedAuthority::new)
                         .collect(Collectors.toList());
 
-        User principal = new User(Long.valueOf(claims.getId()), claims.getSubject(), "", authorities);
+        CustomUserDetail principal = new CustomUserDetail(Long.valueOf(claims.getId()), claims.getSubject(), "", authorities);
 
         return new UsernamePasswordAuthenticationToken(principal, token, authorities);
     }

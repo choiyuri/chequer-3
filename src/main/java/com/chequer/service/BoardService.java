@@ -10,11 +10,11 @@ public interface BoardService {
 
     BoardResponseDto save(BoardSaveRequestDto requestDto);
 
-    BoardResponseDto update(Long id, BoardUpdateRequestDto requestDto, String username);
+    BoardResponseDto update(Long id, BoardUpdateRequestDto requestDto, Long userId);
 
-    void delete(Long id, String username);
+    void delete(Long id, Long userId);
 
     Page<BoardResponseDto> list(Pageable pageable);
 
-    BoardResponseDto view(Long id, String username);
+    BoardResponseDto view(Long id, Long userId);
 }

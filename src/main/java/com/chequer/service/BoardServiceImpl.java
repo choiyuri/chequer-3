@@ -30,11 +30,11 @@ public class BoardServiceImpl implements BoardService {
 
     @Override
     @Transactional
-    public BoardResponseDto update(Long id, BoardUpdateRequestDto requestDto, String username) {
+    public BoardResponseDto update(Long id, BoardUpdateRequestDto requestDto, Long userId) {
         Board board = boardRepository.findById(id)
                 .orElseThrow(() -> new BaseException(ErrorCode.E2001));
 
-        if (!board.getAuthor().equals(username)) {
+        if (!board.getAuthor().equals(userId)) {
             throw new BaseException(ErrorCode.E1003);
         }
 
@@ -44,11 +44,11 @@ public class BoardServiceImpl implements BoardService {
 
     @Override
     @Transactional
-    public void delete(Long id, String username) {
+    public void delete(Long id, Long userId) {
         Board board = boardRepository.findById(id)
                 .orElseThrow(() -> new BaseException(ErrorCode.E2001));
 
-        if (!board.getAuthor().equals(username)) {
+        if (!board.getAuthor().equals(userId)) {
             throw new BaseException(ErrorCode.E1003);
         }
 
@@ -69,12 +69,12 @@ public class BoardServiceImpl implements BoardService {
 
     @Override
     @Transactional
-    public BoardResponseDto view(Long id, String username) {
+    public BoardResponseDto view(Long id, Long userId) {
         Board board = boardRepository.findById(id)
                 .orElseThrow(() -> new BaseException(ErrorCode.E2001));
 
         // 본인 게시글이 아닐 경우에만
-        if (!board.getAuthor().equals(username)) {
+        if (!board.getAuthor().equals(userId)) {
             board.increaseHits();
         }
 
