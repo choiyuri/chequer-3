@@ -2,6 +2,7 @@ package com.chequer.domain.member;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -12,6 +13,14 @@ import javax.validation.constraints.NotEmpty;
 @NoArgsConstructor
 @ApiModel(description = "사용자 저장 요청 DTO")
 public class MemberSaveRequestDto {
+
+    @Builder
+    public MemberSaveRequestDto(String firstName, String lastName, String password, String email) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.password = password;
+        this.email = email;
+    }
 
     @NotEmpty
     @ApiModelProperty(value = "이름", example = "유리")

@@ -8,6 +8,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,6 +20,7 @@ public class BoardApiController {
 
     private final BoardService boardService;
 
+    @ResponseStatus(HttpStatus.CREATED)
     @ApiOperation("게시글 작성")
     @PostMapping("/board")
     public Object save(@RequestBody BoardSaveRequestDto requestDto) {

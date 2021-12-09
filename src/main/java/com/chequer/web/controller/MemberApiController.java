@@ -5,10 +5,8 @@ import com.chequer.service.MemberService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
 @RequiredArgsConstructor
 @RestController
@@ -18,6 +16,7 @@ public class MemberApiController {
 
     private final MemberService memberService;
 
+    @ResponseStatus(HttpStatus.CREATED)
     @ApiOperation("사용자 생성")
     @PostMapping("/signup")
     public Object save(@RequestBody MemberSaveRequestDto requestDto) {

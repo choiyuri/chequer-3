@@ -2,6 +2,7 @@ package com.chequer.domain.auth;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -12,6 +13,12 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 @ApiModel(description = "로그인 요청 DTO")
 public class LoginDto {
+
+    @Builder
+    public LoginDto(String email, String password) {
+        this.email = email;
+        this.password = password;
+    }
 
     @Email
     @NotNull
