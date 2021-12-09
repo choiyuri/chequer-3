@@ -11,9 +11,19 @@
 
 ## 시작하기
 ```bash
+# 클론
 $ git clone https://github.com/choiyuri/chequer.git
+
+# 경로로 이동
 $ cd chequer
+
+# 빌드
 $ ./gradlew build
+
+# JDK 버전 안맞을 경우 (jdk-11)
+$ ./gradlew build -Dorg.gradle.java.home=/JDK_PATH
+
+# 시작
 $ ./gradlew bootRun
 ```
 
