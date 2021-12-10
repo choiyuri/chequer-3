@@ -64,7 +64,7 @@ public class BoardApiControllerTest {
     }
 
     @AfterEach
-    public void tearDown() {
+    public void afterEach() {
         boardRepository.deleteAll();
     }
 
@@ -133,6 +133,7 @@ public class BoardApiControllerTest {
                 .andExpect(status().isOk());
 
         Optional<Board> updatedBoard = boardRepository.findById(updateId);
+        assertThat(updatedBoard.isPresent()).isTrue();
         assertThat(updatedBoard.get().getTitle()).isEqualTo(expectedTitle);
         assertThat(updatedBoard.get().getContent()).isEqualTo(expectedContent);
     }
@@ -170,7 +171,7 @@ public class BoardApiControllerTest {
     @DisplayName("4. 게시글 수정 실패한다 - 없는 게시글 ID")
     public void testUpdateFailNon() throws Exception {
 
-        Long updateId = 99999L;
+        long updateId = 99999L;
         String expectedTitle = "title9";
         String expectedContent = "content9";
 
@@ -207,6 +208,7 @@ public class BoardApiControllerTest {
                 .andExpect(status().isOk());
 
         Optional<Board> deletedBoard = boardRepository.findById(deleteId);
+        assertThat(deletedBoard.isPresent()).isTrue();
         assertThat(deletedBoard.get().getDeleteYn()).isTrue();
     }
 
@@ -230,6 +232,7 @@ public class BoardApiControllerTest {
                 .andExpect(jsonPath("$.error").value(ErrorCode.E1003.name()));
 
         Optional<Board> deletedBoard = boardRepository.findById(deleteId);
+        assertThat(deletedBoard.isPresent()).isTrue();
         assertThat(deletedBoard.get().getDeleteYn()).isFalse();
     }
 
@@ -237,7 +240,7 @@ public class BoardApiControllerTest {
     @DisplayName("7. 게시글 삭제 실패한다 - 없는 게시글 ID")
     public void testDeleteFailNon() throws Exception {
 
-        Long deleteId = 99999L;
+        long deleteId = 99999L;
 
         mockMvc.perform(delete(url + "/" + deleteId)
                 .with(user(getMockUser2())))
@@ -247,7 +250,7 @@ public class BoardApiControllerTest {
     }
 
     @Test
-    @DisplayName("8. 게시글 목록 조회된다")
+    @DisplayName("8. 게시글 목록 조회된다 - totalCount 확인")
     public void testList() throws Exception {
 
         int count = 20;
@@ -289,11 +292,12 @@ public class BoardApiControllerTest {
                 .andExpect(status().isOk());
 
         Optional<Board> selectBoard = boardRepository.findById(selectId);
+        assertThat(selectBoard.isPresent()).isTrue();
         assertThat(selectBoard.get().getHits()).isEqualTo(savedBoard.getHits() + 1);
     }
 
     @Test
-    @DisplayName("9. 게시글 조회수 증가하지 않는다 - 본인")
+    @DisplayName("10. 게시글 조회수 증가하지 않는다 - 본인")
     public void testIncreaseHitMe() throws Exception {
 
         Board savedBoard = boardRepository.save(Board.builder()
@@ -312,6 +316,7 @@ public class BoardApiControllerTest {
                 .andExpect(status().isOk());
 
         Optional<Board> selectBoard = boardRepository.findById(selectId);
+        assertThat(selectBoard.isPresent()).isTrue();
         assertThat(selectBoard.get().getHits()).isEqualTo(savedBoard.getHits());
     }
 }

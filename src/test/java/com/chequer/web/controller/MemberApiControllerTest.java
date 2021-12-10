@@ -29,7 +29,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @Transactional
 @AutoConfigureDataJpa
 @AutoConfigureMockMvc
-@ActiveProfiles(value = "test")
+@ActiveProfiles(value = "local")
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.MOCK)
 @DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
@@ -85,11 +85,6 @@ public class MemberApiControllerTest {
                 .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON);
 
         memberRepository.save(requestDto.toEntity());
-
-//        mockMvc.perform(requestBuilder)
-//                .andDo(print())
-//                .andExpect(status().isCreated())
-//                .andExpect(jsonPath("$.result").value("SUCCESS"));
 
         mockMvc.perform(requestBuilder)
                 .andDo(print())
