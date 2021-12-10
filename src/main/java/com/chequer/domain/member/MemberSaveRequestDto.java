@@ -1,5 +1,6 @@
 package com.chequer.domain.member;
 
+import com.chequer.domain.auth.Role;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Builder;

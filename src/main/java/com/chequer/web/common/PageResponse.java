@@ -1,4 +1,4 @@
-package com.chequer.web;
+package com.chequer.web.common;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

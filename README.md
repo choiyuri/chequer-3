@@ -3,6 +3,7 @@
 - 게시판에 필요한 REST API
 - Spring Boot Version : 2.6.1
 - JDK Version : 11
+- Database : H2
 
 ## 구조
 ```

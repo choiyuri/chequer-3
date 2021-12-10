@@ -1,4 +1,4 @@
-package com.chequer.jwt;
+package com.chequer.config.jwt;
 
 import com.chequer.exception.ErrorCode;
 import io.jsonwebtoken.ExpiredJwtException;

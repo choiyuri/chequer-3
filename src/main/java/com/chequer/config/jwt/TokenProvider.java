@@ -1,4 +1,4 @@
-package com.chequer.jwt;
+package com.chequer.config.jwt;
 
 
 import com.chequer.domain.auth.CustomUserDetail;

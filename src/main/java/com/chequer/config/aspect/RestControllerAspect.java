@@ -1,7 +1,7 @@
 package com.chequer.config.aspect;
 
-import com.chequer.web.RestResponse;
-import com.chequer.web.ResultType;
+import com.chequer.web.common.RestResponse;
+import com.chequer.web.common.ResultType;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;

@@ -3,6 +3,7 @@ package com.chequer.web.controller;
 import com.chequer.domain.member.MemberRepository;
 import com.chequer.domain.member.MemberSaveRequestDto;
 import com.chequer.exception.ErrorCode;
+import com.chequer.web.controller.common.BaseControllerTest;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

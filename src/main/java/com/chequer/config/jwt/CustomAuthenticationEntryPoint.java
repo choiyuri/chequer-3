@@ -1,8 +1,8 @@
-package com.chequer.jwt;
+package com.chequer.config.jwt;
 
 import com.chequer.exception.ErrorCode;
-import com.chequer.web.RestResponse;
-import com.chequer.web.ResultType;
+import com.chequer.web.common.RestResponse;
+import com.chequer.web.common.ResultType;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.AuthenticationException;

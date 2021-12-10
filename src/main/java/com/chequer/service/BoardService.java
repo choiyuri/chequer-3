@@ -3,8 +3,7 @@ package com.chequer.service;
 import com.chequer.domain.board.BoardResponseDto;
 import com.chequer.domain.board.BoardSaveRequestDto;
 import com.chequer.domain.board.BoardUpdateRequestDto;
-import com.chequer.web.PageResponse;
-import org.springframework.data.domain.Page;
+import com.chequer.web.common.PageResponse;
 import org.springframework.data.domain.Pageable;
 
 public interface BoardService {

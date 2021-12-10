@@ -6,6 +6,7 @@ import com.chequer.domain.board.BoardRepository;
 import com.chequer.domain.board.BoardSaveRequestDto;
 import com.chequer.domain.board.BoardUpdateRequestDto;
 import com.chequer.exception.ErrorCode;
+import com.chequer.web.controller.common.BaseControllerTest;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.DisplayName;

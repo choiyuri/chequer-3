@@ -3,7 +3,7 @@ package com.chequer.service;
 import com.chequer.domain.board.*;
 import com.chequer.exception.BaseException;
 import com.chequer.exception.ErrorCode;
-import com.chequer.web.PageResponse;
+import com.chequer.web.common.PageResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;

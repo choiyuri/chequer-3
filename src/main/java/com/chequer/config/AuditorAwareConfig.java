@@ -1,7 +1,7 @@
 package com.chequer.config;
 
 import com.chequer.domain.auth.CustomUserDetail;
-import com.chequer.domain.member.Role;
+import com.chequer.domain.auth.Role;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.domain.AuditorAware;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;

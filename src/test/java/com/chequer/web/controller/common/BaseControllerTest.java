@@ -1,4 +1,4 @@
-package com.chequer.web.controller;
+package com.chequer.web.controller.common;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.TestInstance;

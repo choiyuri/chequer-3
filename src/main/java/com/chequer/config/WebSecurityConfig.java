@@ -1,6 +1,6 @@
 package com.chequer.config;
 
-import com.chequer.jwt.*;
+import com.chequer.config.jwt.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;

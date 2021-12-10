@@ -1,14 +1,13 @@
 package com.chequer.exception;
 
-import com.chequer.web.RestResponse;
-import com.chequer.web.ResultType;
+import com.chequer.web.common.RestResponse;
+import com.chequer.web.common.ResultType;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
-import org.springframework.web.context.request.WebRequest;
 
 @Slf4j
 @RestControllerAdvice

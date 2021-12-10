@@ -1,5 +1,6 @@
 package com.chequer.domain.member;
 
+import com.chequer.domain.auth.Role;
 import com.chequer.domain.common.BaseTimeEntity;
 import lombok.AccessLevel;
 import lombok.Builder;
