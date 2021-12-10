@@ -41,7 +41,7 @@
 ## 3. 시작하기
 ```bash
 # 클론
-$ git clone https://github.com/choiyuri/chequer.git
+$ git clone https://github.com/choiyuri/chequer-3.git
 
 # 경로로 이동
 $ cd chequer
@@ -61,7 +61,10 @@ $ ./gradlew bootRun
 ### 4.1. 사용자 API - 사용자 생성
 - 요청
 ```bash
-curl -X POST "http://localhost:8080/api/v1/signup" -H "accept: */*" -H "Content-Type: application/json" -d "{ \"email\": \"choiyuri9107@gmail.com\", \"firstName\": \"유리\", \"lastName\": \"최\", \"password\": 1234}"
+curl -X POST "http://localhost:8080/api/v1/signup" 
+-H "accept: */*" 
+-H "Content-Type: application/json" 
+-d "{ \"email\": \"choiyuri9107@gmail.com\", \"firstName\": \"유리\", \"lastName\": \"최\", \"password\": 1234}"
 ```
 - 응답
 ```json
