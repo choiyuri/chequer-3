@@ -8,6 +8,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @RequiredArgsConstructor
 @RestController
 @Api(tags = "사용자 API")
@@ -19,7 +21,7 @@ public class MemberApiController {
     @ResponseStatus(HttpStatus.CREATED)
     @ApiOperation("사용자 생성")
     @PostMapping("/signup")
-    public Object save(@RequestBody MemberSaveRequestDto requestDto) {
+    public Object save(@Valid @RequestBody MemberSaveRequestDto requestDto) {
         return memberService.save(requestDto);
     }
 }

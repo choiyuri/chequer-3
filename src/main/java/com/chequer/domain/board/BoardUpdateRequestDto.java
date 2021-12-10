@@ -6,6 +6,8 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import javax.validation.constraints.NotEmpty;
+
 @Getter
 @NoArgsConstructor
 @ApiModel(description = "게시글 수정 요청 DTO")
@@ -17,6 +19,7 @@ public class BoardUpdateRequestDto {
         this.content = content;
     }
 
+    @NotEmpty
     @ApiModelProperty(value = "제목")
     private String title;
 

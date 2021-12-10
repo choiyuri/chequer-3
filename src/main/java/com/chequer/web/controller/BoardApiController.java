@@ -12,6 +12,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @RequiredArgsConstructor
 @RestController
 @Api(tags = "게시글 API")
@@ -23,14 +25,14 @@ public class BoardApiController {
     @ResponseStatus(HttpStatus.CREATED)
     @ApiOperation("게시글 작성")
     @PostMapping("/board")
-    public Object save(@RequestBody BoardSaveRequestDto requestDto) {
+    public Object save(@Valid @RequestBody BoardSaveRequestDto requestDto) {
         return boardService.save(requestDto);
     }
 
     @ApiOperation("게시글 수정")
     @PutMapping("/board/{id}")
     public Object update(@PathVariable Long id,
-                         @RequestBody BoardUpdateRequestDto requestDto,
+                         @Valid @RequestBody BoardUpdateRequestDto requestDto,
                          @AuthenticationPrincipal CustomUserDetail principal) {
         return boardService.update(id, requestDto, principal.getUserId());
     }

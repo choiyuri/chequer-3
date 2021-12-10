@@ -7,6 +7,9 @@ import lombok.Getter;
 @AllArgsConstructor
 public enum ErrorCode {
 
+    // Valid
+    E0001("입력 값이 유효하지 않습니다."),
+
     // 사용자,
     E1001("이미 등록되어 있는 이메일입니다."),
     E1002("해당 사용자가 존재하지 않습니다."),
