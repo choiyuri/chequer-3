@@ -50,7 +50,8 @@ public class MemberSaveRequestDto {
                 .build();
     }
 
-    public void setPassword(String password) {
+    public MemberSaveRequestDto setPassword(String password) {
         this.password = password;
+        return this;
     }
 }
