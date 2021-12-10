@@ -1,9 +1,7 @@
 package com.chequer.config;
 
-import com.chequer.jwt.JwtAccessDeniedHandler;
-import com.chequer.jwt.JwtAuthenticationEntryPoint;
-import com.chequer.jwt.JwtSecurityConfig;
-import com.chequer.jwt.TokenProvider;
+import com.chequer.jwt.*;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -68,6 +66,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .anyRequest().authenticated()
 
                 .and()
-                .apply(new JwtSecurityConfig(tokenProvider));
+                .apply(new JwtSecurityConfig(tokenProvider))
+
+                .and()
+                .exceptionHandling()
+                .authenticationEntryPoint(new CustomAuthenticationEntryPoint(new ObjectMapper()));
     }
 }
