@@ -53,7 +53,7 @@ public class MemberApiControllerTest extends BaseControllerTest {
         mockMvc.perform(requestBuilder)
                 .andDo(print())
                 .andExpect(status().isCreated())
-                .andExpect(jsonPath("$.result").value("SUCCESS"));
+                .andExpect(jsonPath("$.data.email").value(EMAIL));
 
     }
 

@@ -160,7 +160,7 @@ public class BoardApiControllerTest extends BaseControllerTest {
         // then
         mockMvc.perform(requestBuilder)
                 .andDo(print())
-                .andExpect(status().isBadRequest())
+                .andExpect(status().isForbidden())
                 .andExpect(jsonPath("$.error").value(ErrorCode.E1003.name()));
     }
 
@@ -187,7 +187,7 @@ public class BoardApiControllerTest extends BaseControllerTest {
         // then
         mockMvc.perform(requestBuilder)
                 .andDo(print())
-                .andExpect(status().isBadRequest())
+                .andExpect(status().isOk())
                 .andExpect(jsonPath("$.error").value(ErrorCode.E2001.name()));
     }
 
@@ -228,7 +228,7 @@ public class BoardApiControllerTest extends BaseControllerTest {
         // then
         mockMvc.perform(requestBuilder)
                 .andDo(print())
-                .andExpect(status().isBadRequest())
+                .andExpect(status().isForbidden())
                 .andExpect(jsonPath("$.error").value(ErrorCode.E1003.name()));
 
         Optional<Board> deletedBoard = boardRepository.findById(deleteId);
@@ -250,7 +250,7 @@ public class BoardApiControllerTest extends BaseControllerTest {
         // then
         mockMvc.perform(requestBuilder)
                 .andDo(print())
-                .andExpect(status().isBadRequest())
+                .andExpect(status().isOk())
                 .andExpect(jsonPath("$.error").value(ErrorCode.E2001.name()));
     }
 
