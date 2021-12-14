@@ -4,6 +4,7 @@ import com.chequer.config.jwt.JwtFilter;
 import com.chequer.config.jwt.TokenProvider;
 import com.chequer.domain.auth.LoginDto;
 import com.chequer.domain.auth.TokenDto;
+import com.chequer.web.common.RestResponse;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
@@ -30,7 +31,7 @@ public class AuthApiController {
 
     @ApiOperation("사용자 인증")
     @PostMapping("/auth")
-    public Object authorize(@Valid @RequestBody LoginDto loginDto) {
+    public RestResponse<TokenDto> authorize(@Valid @RequestBody LoginDto loginDto) {
 
         UsernamePasswordAuthenticationToken authenticationToken =
                 new UsernamePasswordAuthenticationToken(loginDto.getEmail(), loginDto.getPassword());
@@ -43,6 +44,8 @@ public class AuthApiController {
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.add(JwtFilter.AUTHORIZATION_HEADER, "Bearer " + jwt);
 
-        return new TokenDto(jwt);
+        return RestResponse.<TokenDto>builder()
+                .data(new TokenDto(jwt))
+                .build();
     }
 }

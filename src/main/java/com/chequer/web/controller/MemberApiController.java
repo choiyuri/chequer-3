@@ -1,7 +1,9 @@
 package com.chequer.web.controller;
 
+import com.chequer.domain.member.MemberResponseDto;
 import com.chequer.domain.member.MemberSaveRequestDto;
 import com.chequer.service.MemberService;
+import com.chequer.web.common.RestResponse;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
@@ -21,7 +23,10 @@ public class MemberApiController {
     @ResponseStatus(HttpStatus.CREATED)
     @ApiOperation("사용자 생성")
     @PostMapping("/signup")
-    public Object save(@Valid @RequestBody MemberSaveRequestDto requestDto) {
-        return memberService.save(requestDto);
+    public RestResponse<MemberResponseDto> save(@Valid @RequestBody MemberSaveRequestDto requestDto) {
+
+        return RestResponse.<MemberResponseDto>builder()
+                .data(new MemberResponseDto(memberService.save(requestDto)))
+                .build();
     }
 }

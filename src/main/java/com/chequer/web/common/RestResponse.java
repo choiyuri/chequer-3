@@ -1,5 +1,6 @@
 package com.chequer.web.common;
 
+import com.chequer.exception.ErrorCode;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Builder;
 import lombok.Getter;
@@ -7,15 +8,15 @@ import lombok.Getter;
 /**
  * 모든 요청에 공통으로 사용되는 Response 객체
  */
-@JsonInclude(JsonInclude.Include.NON_NULL)
 @Getter
-public class RestResponse {
+@JsonInclude(JsonInclude.Include.NON_NULL)
+public class RestResponse<T> {
     private ResultType result;
-    private Object data;
-    private Object error;
+    private T data;
+    private ErrorCode error;
 
     @Builder
-    public RestResponse(ResultType result, Object data, Object error) {
+    public RestResponse(ResultType result, T data, ErrorCode error) {
         this.result = result;
         this.data = data;
         this.error = error;
