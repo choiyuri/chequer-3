@@ -2,7 +2,6 @@ package com.chequer.service;
 
 import com.chequer.domain.member.Member;
 import com.chequer.domain.member.MemberRepository;
-import com.chequer.domain.member.MemberResponseDto;
 import com.chequer.domain.member.MemberSaveRequestDto;
 import com.chequer.exception.BaseException;
 import com.chequer.exception.ErrorCode;
@@ -18,7 +17,7 @@ public class MemberServiceImpl implements MemberService {
     private final PasswordEncoder passwordEncoder;
 
     @Override
-    public MemberResponseDto save(MemberSaveRequestDto requestDto) {
+    public Member save(MemberSaveRequestDto requestDto) {
 
         // 이미 존재하는 이메일계정이라면
         if (memberRepository.findByEmail(requestDto.getEmail()).isPresent()) {
@@ -26,8 +25,7 @@ public class MemberServiceImpl implements MemberService {
         }
 
         requestDto.setPassword(passwordEncoder.encode(requestDto.getPassword()));
-        Member member = memberRepository.save(requestDto.toEntity());
-        return new MemberResponseDto(member);
+        return memberRepository.save(requestDto.toEntity());
     }
 
     @Override

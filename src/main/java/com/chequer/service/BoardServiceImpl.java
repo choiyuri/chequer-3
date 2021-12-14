@@ -1,9 +1,11 @@
 package com.chequer.service;
 
-import com.chequer.domain.board.*;
+import com.chequer.domain.board.Board;
+import com.chequer.domain.board.BoardRepository;
+import com.chequer.domain.board.BoardSaveRequestDto;
+import com.chequer.domain.board.BoardUpdateRequestDto;
 import com.chequer.exception.BaseException;
 import com.chequer.exception.ErrorCode;
-import com.chequer.web.common.PageResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
@@ -21,14 +23,13 @@ public class BoardServiceImpl implements BoardService {
 
     @Override
     @Transactional
-    public BoardResponseDto save(BoardSaveRequestDto requestDto) {
-        Board board = boardRepository.save(requestDto.toEntity());
-        return new BoardResponseDto(board);
+    public Board save(BoardSaveRequestDto requestDto) {
+        return boardRepository.save(requestDto.toEntity());
     }
 
     @Override
     @Transactional
-    public BoardResponseDto update(Long id, BoardUpdateRequestDto requestDto, Long userId) {
+    public Board update(Long id, BoardUpdateRequestDto requestDto, Long userId) {
         Board board = boardRepository.findById(id)
                 .orElseThrow(() -> new BaseException(ErrorCode.E2001));
 
@@ -37,7 +38,7 @@ public class BoardServiceImpl implements BoardService {
         }
 
         board.update(requestDto.getTitle(), requestDto.getContent());
-        return new BoardResponseDto(board);
+        return board;
     }
 
     @Override
@@ -54,17 +55,14 @@ public class BoardServiceImpl implements BoardService {
     }
 
     @Override
-    public PageResponse<BoardResponseDto> list(Pageable pageable) {
+    public Page<Board> list(Pageable pageable) {
 
-        Page<Board> boardPage = boardRepository.findByDeleteYn(Boolean.FALSE, pageable);
-
-        return new PageResponse<BoardResponseDto>()
-                .from(boardPage.map(BoardResponseDto::new));
+        return boardRepository.findByDeleteYn(Boolean.FALSE, pageable);
     }
 
     @Override
     @Transactional
-    public BoardResponseDto view(Long id, Long userId) {
+    public Board view(Long id, Long userId) {
         Board board = boardRepository.findById(id)
                 .orElseThrow(() -> new BaseException(ErrorCode.E2001));
 
@@ -73,6 +71,6 @@ public class BoardServiceImpl implements BoardService {
             board.increaseHits();
         }
 
-        return new BoardResponseDto(board);
+        return board;
     }
 }
